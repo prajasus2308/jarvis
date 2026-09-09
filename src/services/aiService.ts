@@ -1,0 +1,3 @@
+export type AssistantContext={cameraActive:boolean;gesture:string;network:string};
+// Gemini requests belong behind a server-side proxy. This local service never exposes a browser API key.
+export async function respondLocally(message:string, context:AssistantContext){const input=message.toLowerCase();if(input.includes('system status'))return `Monitored systems are ${context.network.toLowerCase()}. Vision is ${context.cameraActive?'active':'inactive'}.`;if(input.includes('gesture'))return `Current gesture pipeline state: ${context.gesture}.`;return 'AI cloud access is not configured. I can still control local JARVIS panels, voice, vision, and telemetry.'}
